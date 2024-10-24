@@ -273,12 +273,20 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge:${jei_version}")
 
-    // The One Probe
-    implementation(fg.deobf("curse.maven:theoneprobe-245211:4629624"))
+    // Visual Data Mod
+    compileOnly fg.deobf("curse.maven:theoneprobe-245211:4629624")
+    compileOnly fg.deobf("curse.maven:jade-324717:5776962")
 
     if (!System.getenv().containsKey("CI") && include_test_mods.equals("true")) {
         // Nicephore - Screenshots and Stuff
         //runtimeOnly(fg.deobf("curse.maven:nicephore-401014:3879841"))
+
+        // Visual Data Mods
+        if (visual_info_mod.equals("theoneprobe")) {
+            implementation(fg.deobf("curse.maven:theoneprobe-245211:4629624"))
+        } else if (visual_info_mod.equals("jade")) {
+            implementation(fg.deobf("curse.maven:jade-324717:5776962"))
+        }
 
         // Testing Mods - Trash Cans, Pipez, Create, Refined Pipes, Pretty Pipes, Refined Storage
         runtimeOnly(fg.deobf("curse.maven:SuperMartijn642Core-454372:5668859"))
